@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: black;
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    align-items: center;
+}
+
+.logo {
+    font-size: 36px;
+    background: linear-gradient(90deg,#4f46e5,#06b6d4);
+    -webkit-background-clip: text;
+    color: transparent;
+    cursor: pointer;
+    animation: float 3s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(79,70,229,0.6);
+}
+
+/* USER MENU */
+.user-menu {
+    position: relative;
+}
+
+.user-trigger {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: rgba(30,30,30,0.95);
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    min-width: 160px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.dropdown a {
+    padding: 12px;
+    text-decoration: none;
+    color: white;
+}
+
+.dropdown.show {
+    display: flex;
+}
+
+/* SUBNAV */
+.subnav {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.subnav-inner {
+    background: linear-gradient(90deg,#1f2937,#111827);
+    padding: 14px 40px;
+    border-radius: 40px;
+    display: flex;
+    gap: 50px;
+}
+
+.subnav-inner a {
+    text-decoration: none;
+    color: #c7d2fe;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.subnav-inner a:hover {
+    color: #06b6d4;
+}
+
+/* MAIN */
+.main {
+    text-align: center;
+    margin-top: 70px;
+}
+
+/* WELCOME ANIMATION */
+.welcome {
+    font-size: 32px;
+    margin-bottom: 50px;
+    animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* CAROUSEL */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.carousel {
+    display: flex;
+    gap: 40px;
+}
+
+/* BIG CARDS */
+.card {
+    width: 320px;
+    height: 240px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    opacity: 0.4;
+    transform: scale(0.9);
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card.active {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(79,70,229,0.8);
+}
+
+/* TEXT COLOR MATCH LOGO */
+.card h3 {
+    margin-bottom: 10px;
+    background: linear-gradient(90deg,#4f46e5,#06b6d4);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.card p {
+    margin-bottom: 20px;
+    opacity: 0.85;
+}
+
+/* BUTTON */
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg,#4f46e5,#06b6d4);
+    color: white;
+    cursor: pointer;
+}
+
+/* ARROWS */
+.nav-btn {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    font-size: 26px;
+    padding: 12px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background: rgba(79,70,229,0.7);
+}
+
+/* FLOAT */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}

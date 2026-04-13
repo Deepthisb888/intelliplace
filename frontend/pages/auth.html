@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IntelliPlace - Auth</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/auth.css">
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-left">
+        <h1 class="logo">🚀 IntelliPlace</h1>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-right">
+
+        <!-- LOGIN -->
+        <div class="auth-card active" id="loginCard">
+            <h2 class="title">Hey, good to have you back 👋</h2>
+
+            <form action="/login" method="post">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p class="switch">
+                Don't have an account? 
+                <span onclick="showSignup()">Signup</span>
+            </p>
+        </div>
+
+        <!-- SIGNUP -->
+        <div class="auth-card" id="signupCard">
+            <h2 class="title">Create Account</h2>
+
+            <form action="/signup" method="post">
+                <input name="name" placeholder="Name" required>
+                <input name="age" type="number" placeholder="Age" required>
+                <input name="college" placeholder="College" required>
+                <input name="department" placeholder="Department" required>
+                <input name="usn" placeholder="USN" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button type="submit">Create Account</button>
+            </form>
+
+            <p class="switch">
+                Already have an account? 
+                <span onclick="showLogin()">Login</span>
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function showSignup(){
+    document.getElementById("loginCard").classList.remove("active");
+    document.getElementById("signupCard").classList.add("active");
+}
+
+function showLogin(){
+    document.getElementById("signupCard").classList.remove("active");
+    document.getElementById("loginCard").classList.add("active");
+}
+</script>
+
+</body>
+</html>

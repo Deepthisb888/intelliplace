@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Companies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/companies.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo" onclick="window.location='dashboard.html'">🚀 IntelliPlace</div>
+
+    <div class="user-menu">
+        <div class="user-trigger" onclick="toggleDropdown()">Hi, Hari 👋</div>
+        <div class="dropdown" id="dropdown">
+            <a href="profile.html">Profile</a>
+            <a href="auth.html">Logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="subnav">
+    <div class="subnav-inner">
+        <a href="companies.html">Companies</a>
+        <a href="apply.html">Apply</a>
+        <a href="applications.html">Applications</a>
+    </div>
+</div>
+
+<div class="main">
+
+    <h1 class="welcome">Available Companies</h1>
+
+    <div class="carousel-container">
+
+        <button class="nav-btn" onclick="prevSlide()">❮</button>
+
+        <div class="carousel">
+
+            <div class="card">
+                <h3>TCS</h3>
+                <button onclick="openModal('TCS')">View</button>
+            </div>
+
+            <div class="card active">
+                <h3>Infosys</h3>
+                <button onclick="openModal('Infosys')">View</button>
+            </div>
+
+            <div class="card">
+                <h3>Wipro</h3>
+                <button onclick="openModal('Wipro')">View</button>
+            </div>
+
+            <div class="card">
+                <h3>Accenture</h3>
+                <button onclick="openModal('Accenture')">View</button>
+            </div>
+
+            <div class="card">
+                <h3>Capgemini</h3>
+                <button onclick="openModal('Capgemini')">View</button>
+            </div>
+
+            <div class="card">
+                <h3>Cognizant</h3>
+                <button onclick="openModal('Cognizant')">View</button>
+            </div>
+
+        </div>
+
+        <button class="nav-btn" onclick="nextSlide()">❯</button>
+
+    </div>
+
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">×</span>
+        <h2 id="companyName"></h2>
+        <p id="companyDesc"></p>
+        <ul id="roles"></ul>
+        <button onclick="goApply()">Apply</button>
+    </div>
+</div>
+
+<script>
+let index = 1;
+const cards = document.querySelectorAll(".card");
+
+function updateCarousel(){
+    cards.forEach(card=>{
+        card.classList.remove("active");
+        card.style.opacity = "0.5";
+        card.style.transform = "scale(0.9)";
+    });
+
+    cards[index].classList.add("active");
+    cards[index].style.opacity = "1";
+    cards[index].style.transform = "scale(1.05)";
+}
+
+function nextSlide(){
+    index = (index + 1) % cards.length;
+    updateCarousel();
+}
+
+function prevSlide(){
+    index = (index - 1 + cards.length) % cards.length;
+    updateCarousel();
+}
+
+setInterval(nextSlide, 4000);
+updateCarousel();
+
+function toggleDropdown(){
+    document.getElementById("dropdown").classList.toggle("show");
+}
+
+window.onclick = function(e){
+    if(!e.target.closest('.user-menu')){
+        document.getElementById("dropdown").classList.remove("show");
+    }
+}
+
+function openModal(company){
+    const modal = document.getElementById("modal");
+    modal.style.display = "flex";
+
+    let data = {
+        TCS: {
+            desc: "TCS is a global IT services company.",
+            roles: ["System Engineer", "Backend Developer", "Support Engineer"]
+        },
+        Infosys: {
+            desc: "Infosys is a digital consulting leader.",
+            roles: ["System Engineer", "Full Stack Developer", "Analyst"]
+        },
+        Wipro: {
+            desc: "Wipro provides IT services.",
+            roles: ["Project Engineer", "Java Developer", "Cloud Engineer"]
+        },
+        Accenture: {
+            desc: "Accenture delivers consulting solutions.",
+            roles: ["Associate Engineer", "Developer", "Consultant"]
+        },
+        Capgemini: {
+            desc: "Capgemini focuses on tech consulting.",
+            roles: ["Analyst", "Backend Dev", "QA Engineer"]
+        },
+        Cognizant: {
+            desc: "Cognizant offers IT solutions.",
+            roles: ["Programmer Analyst", "Software Engineer", "Data Analyst"]
+        }
+    };
+
+    document.getElementById("companyName").innerText = company;
+    document.getElementById("companyDesc").innerText = data[company].desc;
+
+    let rolesHTML = "";
+    data[company].roles.forEach(r=>{
+        rolesHTML += `<li>${r}</li>`;
+    });
+
+    document.getElementById("roles").innerHTML = rolesHTML;
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display = "none";
+}
+
+function goApply(){
+    window.location = "apply.html";
+}
+</script>
+
+</body>
+</html>

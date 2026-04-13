@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Applications</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/applications.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo" onclick="window.location='dashboard.html'">🚀 IntelliPlace</div>
+
+    <div class="user-menu">
+        <div class="user-trigger" onclick="toggleDropdown()">Hi, Hari 👋</div>
+        <div class="dropdown" id="dropdown">
+            <a href="profile.html">Profile</a>
+            <a href="auth.html">Logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="subnav">
+    <div class="subnav-inner">
+        <a href="companies.html">Companies</a>
+        <a href="apply.html">Apply</a>
+        <a href="applications.html">Applications</a>
+    </div>
+</div>
+
+<div class="applications-container">
+
+    <h1 class="title">My Applications</h1>
+
+    <div class="applications-grid">
+
+        <div class="app-card">
+            <h3>Infosys</h3>
+            <p>Role: System Engineer</p>
+            <span class="status applied">Applied</span>
+        </div>
+
+        <div class="app-card">
+            <h3>TCS</h3>
+            <p>Role: Backend Developer</p>
+            <span class="status shortlisted">Shortlisted</span>
+        </div>
+
+        <div class="app-card">
+            <h3>Wipro</h3>
+            <p>Role: Cloud Engineer</p>
+            <span class="status rejected">Rejected</span>
+        </div>
+
+        <div class="app-card">
+            <h3>Accenture</h3>
+            <p>Role: Associate Engineer</p>
+            <span class="status applied">Applied</span>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function toggleDropdown(){
+    document.getElementById("dropdown").classList.toggle("show");
+}
+
+window.onclick = function(e){
+    if(!e.target.closest('.user-menu')){
+        document.getElementById("dropdown").classList.remove("show");
+    }
+}
+</script>
+
+</body>
+</html>

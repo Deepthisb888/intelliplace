@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apply</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/apply.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo" onclick="window.location='dashboard.html'">🚀 IntelliPlace</div>
+
+    <div class="user-menu">
+        <div class="user-trigger" onclick="toggleDropdown()">Hi, Hari 👋</div>
+        <div class="dropdown" id="dropdown">
+            <a href="profile.html">Profile</a>
+            <a href="auth.html">Logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="subnav">
+    <div class="subnav-inner">
+        <a href="companies.html">Companies</a>
+        <a href="apply.html">Apply</a>
+        <a href="applications.html">Applications</a>
+    </div>
+</div>
+
+<div class="apply-container">
+
+    <div class="apply-left">
+
+        <h2>Select Company</h2>
+
+        <div class="custom-select" onclick="toggleDropdownMenu('companyDropdown')">
+            <div id="selectedCompany">Choose Company</div>
+            <div class="options" id="companyDropdown">
+                <div onclick="selectCompany('TCS')">TCS</div>
+                <div onclick="selectCompany('Infosys')">Infosys</div>
+                <div onclick="selectCompany('Wipro')">Wipro</div>
+                <div onclick="selectCompany('Accenture')">Accenture</div>
+                <div onclick="selectCompany('Capgemini')">Capgemini</div>
+                <div onclick="selectCompany('Cognizant')">Cognizant</div>
+            </div>
+        </div>
+
+        <h2>Select Role</h2>
+
+        <div class="custom-select" onclick="toggleDropdownMenu('roleDropdown')">
+            <div id="selectedRole">Choose Role</div>
+            <div class="options" id="roleDropdown"></div>
+        </div>
+
+        <button class="apply-btn">Submit Application</button>
+
+    </div>
+
+    <div class="apply-right">
+
+        <label class="upload-box">
+            <input type="file">
+            <div class="upload-content">
+                <div class="plus">+</div>
+                <p>Upload Resume</p>
+            </div>
+        </label>
+
+    </div>
+
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <h2>Application Submitted 🎉</h2>
+        <p>Your application is submitted successfully.</p>
+
+        <button onclick="goApplications()">Track Status</button>
+        <button onclick="goDashboard()">Go to Dashboard</button>
+        <button onclick="closeSuccess()">Return to Apply</button>
+    </div>
+</div>
+
+<script>
+function toggleDropdown(){
+    document.getElementById("dropdown").classList.toggle("show");
+}
+
+function toggleDropdownMenu(id){
+    document.getElementById(id).classList.toggle("show");
+}
+
+window.onclick = function(e){
+    if(!e.target.closest('.custom-select') && !e.target.closest('.user-menu')){
+        document.querySelectorAll('.options').forEach(o=>o.classList.remove("show"));
+        document.getElementById("dropdown").classList.remove("show");
+    }
+}
+
+function selectCompany(company){
+    document.getElementById("selectedCompany").innerText = company;
+    document.getElementById("companyDropdown").classList.remove("show");
+
+    let roles = {
+        TCS: ["System Engineer","Backend Developer"],
+        Infosys: ["System Engineer","Full Stack Developer","Analyst"],
+        Wipro: ["Project Engineer","Cloud Engineer"],
+        Accenture: ["Associate Engineer","Consultant"],
+        Capgemini: ["Analyst","QA Engineer"],
+        Cognizant: ["Programmer Analyst","Data Analyst"]
+    };
+
+    let roleDropdown = document.getElementById("roleDropdown");
+    roleDropdown.innerHTML = "";
+
+    roles[company].forEach(role=>{
+        let div = document.createElement("div");
+        div.innerText = role;
+        div.onclick = function(){
+            document.getElementById("selectedRole").innerText = role;
+            roleDropdown.classList.remove("show");
+        };
+        roleDropdown.appendChild(div);
+    });
+}
+
+document.querySelector(".apply-btn").onclick = function(){
+    document.getElementById("successModal").style.display = "flex";
+};
+
+function closeSuccess(){
+    document.getElementById("successModal").style.display = "none";
+}
+
+function goApplications(){
+    window.location = "applications.html";
+}
+
+function goDashboard(){
+    window.location = "dashboard.html";
+}
+</script>
+
+</body>
+</html>
